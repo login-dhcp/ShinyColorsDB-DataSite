@@ -32,7 +32,7 @@
 <ng-template #sidebar let-offcanvas>
   <div class="offcanvas-header p-3">
     <div class="container d-flex align-items-center justify-content-between">
-      <h3 class="h3 m-0">ShinyColorsDB</h3>
+      <h3 class="h3 m-0" id="sideMenuTitle">{{ 'ShinyColorsDB' | translate }}</h3>
       <button role="button" class="btn p-0"
         [attr.aria-label]="'Close' | translate"
         (click)="offcanvas.dismiss()">
@@ -55,13 +55,13 @@
       <a class="nav-link" [routerLink]="['/timetable']"
         (click)="offcanvas.dismiss()">{{ '歴史' | translate }}</a>
       <a class="nav-link" [routerLink]="['/cardle']"
-        (click)="offcanvas.dismiss()">Cardle</a>
+        (click)="offcanvas.dismiss()">{{ 'Cardle' | translate }}</a>
       <a class="nav-link" [routerLink]="['/r-lookup']"
         (click)="offcanvas.dismiss()">{{ '技能篩選' | translate }}</a>
     </nav>
     <nav class="nav justify-content-center">
       <a href="https://spine.shinycolors.moe/" target="_blank"
-        class="nav-link">SpineViewer</a>
+        class="nav-link">{{ 'SpineViewer' | translate }}</a>
     </nav>
     <nav class="nav flex-column">
       <app-charlist
@@ -72,7 +72,7 @@
 
     <div class="d-flex justify-content-evenly pb-3">
       <a href="https://github.com/ShinyColorsDB/ShinyColorsDB-DataSite"
-        target="_blank">
+        target="_blank" [attr.aria-label]="'Source code' | translate" [title]="'Source code' | translate">
         <svg xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40"
           height="40" viewBox="0 0 256 256" xml:space="preserve">
@@ -89,7 +89,7 @@
         </svg>
       </a>
       <a href="https://twitter.com/ShinyColorsDB" target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer" [attr.aria-label]="'X profile' | translate" [title]="'X profile' | translate">
         <svg xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40"
           height="40" viewBox="0 0 256 256" xml:space="preserve">
@@ -108,7 +108,7 @@
           </g>
         </svg>
       </a>
-      <a href="mailto:euphokumiko@shinycolors.moe" target="_blank">
+      <a href="mailto:euphokumiko@shinycolors.moe" target="_blank" [attr.aria-label]="'Email' | translate" [title]="'Email' | translate">
         <svg xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40"
           height="40" viewBox="0 0 256 256" xml:space="preserve">
@@ -128,7 +128,7 @@
           </g>
         </svg>
       </a>
-      <a href="https://discord.gg/sdBJXcm">
+      <a href="https://discord.gg/sdBJXcm" [attr.aria-label]="'Discord' | translate" [title]="'Discord' | translate">
         <svg xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40"
           height="40" viewBox="0 0 256 256" xml:space="preserve">

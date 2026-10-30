@@ -1,0 +1,222 @@
+[
+  {
+    "unitId": 1,
+    "unitName": "illumination STARS",
+    "unitHiragana": "イルミネーションスターズ",
+    "color1": "#ffea86",
+    "idols": [
+      {
+        "idolId": 1,
+        "idolName": "櫻木真乃"
+      },
+      {
+        "idolId": 2,
+        "idolName": "風野灯織"
+      },
+      {
+        "idolId": 3,
+        "idolName": "八宮めぐる"
+      }
+    ]
+  },
+  {
+    "unitId": 2,
+    "unitName": "L'Antica",
+    "unitHiragana": "アンティーカ",
+    "color1": "#f7d8ff",
+    "idols": [
+      {
+        "idolId": 4,
+        "idolName": "月岡恋鐘"
+      },
+      {
+        "idolId": 5,
+        "idolName": "田中摩美々"
+      },
+      {
+        "idolId": 6,
+        "idolName": "白瀬咲耶"
+      },
+      {
+        "idolId": 7,
+        "idolName": "三峰結華"
+      },
+      {
+        "idolId": 8,
+        "idolName": "幽谷霧子"
+      }
+    ]
+  },
+  {
+    "unitId": 3,
+    "unitName": "放課後クライマックスガールズ",
+    "unitHiragana": "放課後クライマックスガールズ",
+    "color1": "#fedec7",
+    "idols": [
+      {
+        "idolId": 9,
+        "idolName": "小宮果穂"
+      },
+      {
+        "idolId": 10,
+        "idolName": "園田智代子"
+      },
+      {
+        "idolId": 11,
+        "idolName": "西城樹里"
+      },
+      {
+        "idolId": 12,
+        "idolName": "杜野凛世"
+      },
+      {
+        "idolId": 13,
+        "idolName": "有栖川夏葉"
+      }
+    ]
+  },
+  {
+    "unitId": 4,
+    "unitName": "ALSTROEMERIA",
+    "unitHiragana": "アルストロメリア",
+    "color1": "#ffd9e6",
+    "idols": [
+      {
+        "idolId": 14,
+        "idolName": "大崎甘奈"
+      },
+      {
+        "idolId": 15,
+        "idolName": "大崎甜花"
+      },
+      {
+        "idolId": 16,
+        "idolName": "桑山千雪"
+      }
+    ]
+  },
+  {
+    "unitId": 5,
+    "unitName": "Straylight",
+    "unitHiragana": "ストレイライト",
+    "color1": "#ffdbdb",
+    "idols": [
+      {
+        "idolId": 17,
+        "idolName": "芹沢あさひ"
+      },
+      {
+        "idolId": 18,
+        "idolName": "黛冬優子"
+      },
+      {
+        "idolId": 19,
+        "idolName": "和泉愛依"
+      }
+    ]
+  },
+  {
+    "unitId": 6,
+    "unitName": "noctchill",
+    "unitHiragana": "ノクチル",
+    "color1": "#dbe4ff",
+    "idols": [
+      {
+        "idolId": 20,
+        "idolName": "浅倉透"
+      },
+      {
+        "idolId": 21,
+        "idolName": "樋口円香"
+      },
+      {
+        "idolId": 22,
+        "idolName": "福丸小糸"
+      },
+      {
+        "idolId": 23,
+        "idolName": "市川雛菜"
+      }
+    ]
+  },
+  {
+    "unitId": 7,
+    "unitName": "SHHis",
+    "unitHiragana": "シーズ",
+    "color1": "#c3f4ee",
+    "idols": [
+      {
+        "idolId": 24,
+        "idolName": "七草にちか"
+      },
+      {
+        "idolId": 25,
+        "idolName": "緋田美琴"
+      }
+    ]
+  },
+  {
+    "unitId": 8,
+    "unitName": "CoMETIK",
+    "unitHiragana": "コメティック",
+    "color1": "#827976",
+    "idols": [
+      {
+        "idolId": 26,
+        "idolName": "斑鳩ルカ"
+      },
+      {
+        "idolId": 27,
+        "idolName": "鈴木羽那"
+      },
+      {
+        "idolId": 28,
+        "idolName": "郁田はるき"
+      }
+    ]
+  },
+  {
+    "unitId": 81,
+    "unitName": "２８３プロ",
+    "unitHiragana": "２８３プロ",
+    "color1": "#FFFFFF",
+    "idols": [
+      {
+        "idolId": 91,
+        "idolName": "七草はづき"
+      }
+    ]
+  },
+  {
+    "unitId": 91,
+    "unitName": "B小町",
+    "unitHiragana": "B小町",
+    "color1": "#f241b7",
+    "idols": [
+      {
+        "idolId": 801,
+        "idolName": "ルビー"
+      },
+      {
+        "idolId": 802,
+        "idolName": "有馬加奈"
+      },
+      {
+        "idolId": 803,
+        "idolName": "MEMちょ"
+      }
+    ]
+  },
+  {
+    "unitId": 92,
+    "unitName": "劇団ララライ",
+    "unitHiragana": "劇団ララライ",
+    "color1": "#85b8ff",
+    "idols": [
+      {
+        "idolId": 804,
+        "idolName": "黒川あかね"
+      }
+    ]
+  }
+]

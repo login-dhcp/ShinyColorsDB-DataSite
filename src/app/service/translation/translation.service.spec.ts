@@ -70,6 +70,16 @@ describe('TranslationService', () => {
     expect(service.language()).toBe('ko-KR');
   });
 
+  it('translates menu names and icon descriptions with an original-text fallback for unknown names', () => {
+    const service = server('http://localhost/?lang=ko-KR');
+    expect(service.translate('アンティーカ')).toBe('안티카');
+    expect(service.translate("L'Antica")).toBe('안티카');
+    expect(service.translate('Icon of idol 櫻木真乃')).toBe('아이돌 아이콘 사쿠라기 마노');
+    expect(service.translate('Icon of unit illumination STARS')).toBe('유닛 아이콘: 일루미네이션 스타즈');
+    expect(service.translate('未知の新ユニット')).toBe('未知の新ユニット');
+    expect(service.translate('Picture of 【原文のカード】櫻木真乃')).toBe('카드 이미지: 【原文のカード】櫻木真乃');
+  });
+
   it('uses the server-transferred language during hydration instead of differing local storage', () => {
     localStorage.setItem('shinycolors.language', 'ja-JP');
     TestBed.configureTestingModule({});

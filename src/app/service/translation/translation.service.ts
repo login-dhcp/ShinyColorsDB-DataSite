@@ -87,8 +87,11 @@ export class TranslationService {
     const lookup = (key: string): string | undefined => Object.hasOwn(dictionary, key) ? dictionary[key] : undefined;
     const direct = lookup(text) ?? lookup(text.trim());
     if (direct !== undefined) return direct;
-    for (const prefix of ['Picture of', 'Image of', 'General image of', 'Illust image of', 'Fes image of', 'Icon of idea mark', 'Icon of hirameki', 'Icon of proficiency']) {
-      if (text.startsWith(`${prefix} `) && lookup(prefix)) return lookup(prefix) + text.slice(prefix.length);
+    for (const prefix of ['Picture of', 'Image of', 'General image of', 'Illust image of', 'Fes image of', 'Icon of unit', 'Icon of idol', 'Icon of idea mark', 'Icon of hirameki', 'Icon of proficiency']) {
+      if (text.startsWith(`${prefix} `) && lookup(prefix)) {
+        const suffix = text.slice(prefix.length).trimStart();
+        return `${lookup(prefix)} ${lookup(suffix) ?? suffix}`;
+      }
     }
     return text.split('\n').map(line => line.replace(/^(\s*)([^:：]+)([:：])(.*)$/, (match, space, label: string, colon, rest) =>
       lookup(label) ? `${space}${lookup(label)}${colon}${rest}` : match)).join('\n');

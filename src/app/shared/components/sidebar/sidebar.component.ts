@@ -57,6 +57,6 @@ export class SidebarComponent implements OnInit {
   }
 
   open(content: TemplateRef<any>) {
-    this.offcanvasService.open(content, { panelClass: 'bg-light', position: 'end' });
+    this.offcanvasService.open(content, { panelClass: 'bg-light', position: 'end', ariaLabelledBy: 'sideMenuTitle' }).result.catch(() => undefined);
   }
 }
