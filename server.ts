@@ -34,8 +34,7 @@ export function app(): express.Express {
 
   // All other requests are rendered by Angular
   server.use((req, res, next) => {
-    // SSR language can depend on the saved preference or Accept-Language.
-    res.vary('Accept-Language');
+    // SSR language can depend on the URL or saved preference.
     res.vary('Cookie');
     res.setHeader('Cache-Control', 'private, no-cache');
     angularApp

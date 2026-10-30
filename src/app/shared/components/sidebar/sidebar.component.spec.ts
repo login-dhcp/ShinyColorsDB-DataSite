@@ -24,7 +24,6 @@ describe('SidebarComponent', () => {
     .compileComponents();
 
     TestBed.inject(NgbConfig).animation = false;
-    TestBed.inject(TranslationService).setLanguage('zh-JP');
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -32,6 +31,12 @@ describe('SidebarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('shows only KR, EN, JP, CN in that order and defaults to KR', () => {
+    const selection = fixture.nativeElement.querySelector('#headerLanguageSelection') as HTMLSelectElement;
+    expect(Array.from(selection.options, option => option.textContent)).toEqual(['KR', 'EN', 'JP', 'CN']);
+    expect(selection.value).toBe('ko-KR');
   });
 
   afterEach(() => {
@@ -44,19 +49,24 @@ describe('SidebarComponent', () => {
 
   it('changes and saves the language immediately from the visible header dropdown', () => {
     const selection = fixture.nativeElement.querySelector('#headerLanguageSelection') as HTMLSelectElement;
-    expect(selection.value).toBe('zh-JP');
-    expect(selection.querySelector('option[value="ko-KR"]')?.textContent).toBe('한국어');
-    selection.value = 'ko-KR';
+    expect(selection.value).toBe('ko-KR');
+    expect(selection.querySelector('option[value="ko-KR"]')?.textContent).toBe('KR');
+    TestBed.inject(UtilitiesService).mobileTitle.emit('卡片情報');
+    selection.value = 'en-US';
     selection.dispatchEvent(new Event('change'));
     TestBed.tick();
     fixture.detectChanges();
-    expect(TestBed.inject(TranslationService).language()).toBe('ko-KR');
-    expect(selection.value).toBe('ko-KR');
-    expect(selection.getAttribute('aria-label')).toBe('언어 선택');
-    expect(localStorage.getItem('shinycolors.language')).toBe('ko-KR');
-    expect(document.cookie).toContain('shinycolors.language=ko-KR');
+    expect(TestBed.inject(TranslationService).language()).toBe('en-US');
+    expect(selection.value).toBe('en-US');
+    // Selected attributes must also survive server HTML serialization.
+    expect(selection.querySelector('option[selected]')?.getAttribute('value')).toBe('en-US');
+    expect(selection.querySelectorAll('option[selected]').length).toBe(1);
+    expect(selection.getAttribute('aria-label')).toBe('Language');
+    expect(fixture.nativeElement.querySelector('h2').textContent).toContain('Card Information');
+    expect(localStorage.getItem('shinycolors.language')).toBe('en-US');
+    expect(document.cookie).toContain('shinycolors.language=en-US');
     expect(new URL(document.URL).searchParams.get('idolid')).toBe('1');
-    expect(new URL(document.URL).searchParams.get('lang')).toBe('ko-KR');
+    expect(new URL(document.URL).searchParams.get('lang')).toBe('en-US');
     expect(location.hash).toBe('#profile');
     expect(document.querySelector('.modal')).toBeNull();
   });
@@ -104,10 +114,14 @@ describe('SidebarComponent', () => {
     expect(checkedIdols).toBe(33);
     expect(panel.querySelector('a[href="/idolinfo?idolid=1"]')?.textContent).toContain('사쿠라기 마노');
     expect(panel.querySelector('img[alt="유닛 아이콘: 일루미네이션 스타즈"]')).toBeTruthy();
-    translation.setLanguage('zh-JP');
+    translation.setLanguage('en-US');
     TestBed.tick();
-    expect(groups[0].textContent).toContain('イルミネーションスターズ');
-    expect(panel.querySelector('a[href="/idolinfo?idolid=1"]')?.textContent).toContain('櫻木真乃');
+    expect(groups[0].textContent).toContain('illumination STARS');
+    expect(panel.querySelector('a[href="/idolinfo?idolid=1"]')?.textContent).toContain('Mano Sakuragi');
+    for (const label of ['Home', 'Release History', 'Cardle', 'Skill Search', 'Spine Viewer', 'Settings']) {
+      expect(panel.textContent).toContain(label);
+    }
+    expect(panel.textContent).not.toMatch(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u);
     expect(menuUnits[0].idols[0].idolName).toBe('櫻木真乃');
   });
 });

@@ -1,66 +1,65 @@
-# 한국어 지원 검증
+# 언어 지원 검증
 
-- 기준 커밋: `98c5d63db46700d0dcf8a29913ccc0e15bb5bc80`
 - 작업 브랜치: `feat/korean-localization`
-- 실행 환경: Node 24.22.2, 고정된 원본 package-lock.json의 의존성
-- 한국어 문구: `src/locale/ko.json`의 264개 항목
+- 실행 환경: Node 24.22.2, 원본 package-lock.json 기준의 설치된 의존성
+- 지원 언어: **KR → EN → JP → CN**, 기본값 **KR**
+- 번역 사전: `src/locale/{ko,en,ja,cn}.json`, 언어별 동일한 264개 UI·이름 키
 
-## 사용
+## 언어 선택
 
-상단 언어 드롭다운에서 한국어를 선택하면 즉시 적용된다. 메뉴 → 설정 → 한국어 → 확인으로도 선택할 수 있다. URL에 `lang=ko-KR`를 지정해서 직접 열 수도 있다. 기존 query parameter는 유지한다. 예: `/pcardinfo?uuid=카드-ID&lang=ko-KR`.
+상단 드롭다운은 선택 즉시 적용한다. 메뉴 → 설정에서는 선택 후 확인하면 적용하며, 취소하면 기존 언어를 유지한다. 두 선택 목록은 KR, EN, JP, CN만 같은 순서로 표시한다.
 
-URL 선택, 저장된 선택(쿠키/로컬 저장소), 브라우저 언어 순으로 언어를 선택한다. 서버에서는 쿠키와 Accept-Language를 읽고 TransferState로 브라우저의 초기 언어를 맞춘다. 원래 UI는 `lang=zh-JP` 또는 설정의 혼합 모드로 선택한다.
+선택 우선순위는 URL의 `lang`, 저장된 선택(쿠키/로컬 저장소), 기본값 KR이다. 브라우저 언어와 Accept-Language는 기본값을 바꾸지 않는다. 명시적으로 선택한 EN 등의 저장값은 다음 방문에도 유지한다.
+
+`?lang=KR`, `?lang=EN`, `?lang=JP`, `?lang=CN` 또는 표준 locale 코드 `ko-KR`, `en-US`, `ja-JP`, `zh-CN`으로 직접 열 수 있다. 다른 query parameter와 fragment는 유지한다. 이전 혼합 모드 `zh-JP`는 KR, 번체 중국어 `zh-TW`는 CN으로 처리한다.
+
+서버는 선택 결과를 TransferState로 브라우저에 전달한다. 드롭다운의 선택 항목은 HTML의 selected 속성에도 기록하므로 초기 HTML과 화면 문구의 언어가 일치한다. 사용자별 응답에는 `Cache-Control: private, no-cache`, `Vary: Cookie`를 적용한다.
+
+## EN 표시 수정
+
+기존 EN 사전은 예전 숫자 ID를 사용하여 현재 원문 키와 맞지 않았고, 새 UI 문구와 메뉴 이름도 빠져 있었다. EN·JP·CN 사전을 현재 KR 사전과 동일한 원문 키로 정리했다. 홈, 설정, 아이돌·카드 상세, 검색, 출시표, Cardle, 오류 화면, 페이지 제목·메타 설명과 메뉴의 유닛·아이돌 이름을 포함한다.
+
+우측 메뉴는 API 목록의 11개 그룹·33명 이름을 포함한다. fixture는 메뉴에 필요한 ID·이름·색상만 저장한다. 단독 이름과 이미지 대체 설명을 번역해도 API 요청값과 탐색 ID는 유지한다.
 
 ## 자동 검증
 
-동일 코드의 검증 작업본에서 production 빌드와 단위 테스트를 실행했다.
+동일 코드의 검증 작업본에서 다음을 확인했다.
 
 - production 빌드 성공.
-- 단위 테스트 45개 통과, 원본의 9개 건너뜀 유지.
-- 언어 선택 확인·취소, 저장과 URL 보존, 언어 전환 시 화면·제목·메타 설명 갱신, 원문 데이터 fallback, 검색 API 값 보존을 검증했다.
-- 쿠키가 없는 서버 요청에서 브라우저 전용 document 속성을 읽지 않는지 검증했다.
-- 서버에서 스킬 패널의 Pixi 렌더러와 캐러셀 타이머를 실행하지 않는지 검증했다.
+- 단위 테스트 **57개 통과**, 기존 **9개 건너뜀** 유지.
+- 네 언어의 사전 키 일치·빈 번역 없음·EN의 미번역 CJK 문구 없음.
+- KR 기본값, 저장된 선택과 URL의 우선순위, 별칭과 이전 설정값 처리.
+- 상단 및 설정의 네 선택지와 순서, 즉시 적용·확인·취소·선택 동기화.
+- 언어 변경 시 제목·메타 설명·접근성 문구 갱신, query parameter·fragment 보존.
+- 실제 offcanvas 컴포넌트를 열어 모든 그룹·33명과 이동 ID를 확인하고 KR → EN 전환 후 영어 메뉴 문구를 확인.
+- 서버에서 브라우저 전용 document 속성, Pixi 렌더러와 캐러셀 타이머를 실행하지 않음.
 
 ## 실제 HTTP·SSR 검증
 
-검증 시각: `2026-10-30T04:19:05.447Z`
+검증 시각: 2026-10-30T05:02:34.932Z
 
-임시 production 서버와 원본 API를 사용해 다음 11개 항목을 통과했다.
+임시 production 서버와 원본 API로 다음 **13개 요청**을 통과했다. 모든 요청에서 html lang, 네 선택지의 순서와 선택 상태, private 캐시 정책을 확인했다. 번역 문구는 script의 데이터가 아닌 화면 DOM의 텍스트로 확인했다.
 
 | 요청 | 확인 |
 | --- | --- |
-| 홈 `?lang=ko-KR` | 최근 업데이트·CD·라이브 정보, 한국어 html lang |
-| 아이돌 `?idolid=1&lang=ko-KR` | 프로필·P/S 카드 목록의 한국어 UI |
-| P 카드 상세 | 출시일·획득 방법·레어도·추억 어필 |
-| S 카드 상세 | 출시일·서포트 스킬·악곡 숙련도 |
-| 출시표 | 전체·한정·통상 |
-| 스킬 검색 | 검색 제목·서포트 스킬·아이돌 |
-| Cardle | 건너뛰기·정답 제출 |
-| 오류 화면 | HTTP 404, 한국어 안내·홈 링크 |
-| 원본 언어 query + 한국어 쿠키 | query 선택이 우선하며 원본 UI로 렌더링 |
-| 쿠키 없는 한국어 Accept-Language | 한국어 첫 요청 성공 |
-| 한국어 쿠키 + 일본어 Accept-Language | 저장된 한국어 선택이 우선 |
+| 홈 + 영어 Accept-Language | KR 기본값과 최근 업데이트·CD·라이브 정보 |
+| 홈 `?lang=KR` | KR 선택과 한국어 문구 |
+| 홈 `?lang=EN` | EN 선택과 Latest Updates·CD Information·Live Information |
+| 홈 `?lang=JP` | JP 선택과 일본어 CD·라이브 문구 |
+| 홈 `?lang=CN` | CN 선택과 간체 중국어 CD·라이브 문구 |
+| 홈 + 저장된 EN 쿠키 | EN 선택 유지 |
+| 홈 `?lang=KR` + EN 쿠키 | URL의 KR 우선 |
+| EN 아이돌 프로필 | Name·Birthday·Mano Sakuragi·Produce Cards·Support Cards |
+| EN P 카드 상세 | Release Date·How to Obtain·Rarity·Memory Appeal |
+| EN S 카드 상세 | Release Date·Support Skills·Music Proficiency |
+| EN 출시표 | Overview·Limited·Permanent |
+| EN 스킬 검색 | Skill Search·Support Skills·Idols·Stamina Recovery |
+| EN 오류 화면 | HTTP 404·Page not found·Return to Home |
 
-서버 응답의 `Cache-Control: private, no-cache`와 `Vary: Accept-Language, Cookie`도 확인했다. 언어가 다른 사용자의 SSR HTML이 공유 캐시에 섞이지 않도록 한다.
+## 범위와 확인 한계
 
-## 범위
+등록된 UI 문구와 단독 유닛명·아이돌명은 선택 언어로 번역한다. 카드명·스킬 설명·커뮤 본문 등 미등록 게임 데이터는 원문으로 표시한다. 일부 외부 UI 라이브러리의 기본 접근성 문구는 라이브러리 기본 언어를 사용한다.
 
-단독으로 표시되는 유닛명·아이돌명은 한국어 사전에 따라 번역한다. 카드명·스킬 설명·커뮤 본문 등의 게임 데이터는 번역 자료가 없으면 원문으로 표시한다. 기존 다른 언어 파일에서 누락된 항목도 원문으로 fallback한다. 일부 외부 UI 라이브러리의 기본 접근성 문구는 라이브러리 기본 언어를 사용한다.
+연결된 브라우저가 없어 실제 브라우저의 화면 배치·폰트 렌더링·hydration 완료 여부는 확인하지 못했다. 화면 변경은 DOM 단위 테스트, 초기 HTML은 실제 HTTP·SSR 검증으로 각각 확인했다.
 
-연결된 브라우저가 없어 실제 브라우저의 화면 배치·폰트 렌더링과 hydration 완료 여부는 확인하지 못했다. 설정 선택·취소·문구 갱신은 DOM 단위 테스트로 확인했으며 실제 브라우저 클릭 검증과 구분한다.
-
-원본의 CSS deep selector 및 일부 CommonJS 의존성 빌드 경고가 남아 있다.
-
-## 상단 언어 드롭다운
-
-설정 창을 열지 않고 상단 드롭다운으로 언어를 즉시 변경할 수 있다. 기존 쿠키·로컬 저장소·URL 저장 동작과 연결되며 다른 위치에서 언어를 변경해도 선택 항목이 동기화된다. 좁은 화면에서는 제목이 줄임표로 표시되어 드롭다운과 메뉴 버튼이 밀려나지 않도록 했다.
-
-드롭다운 변경 후 검증: 단위 테스트 47개 통과, 기존 9개 건너뜀. 상단 드롭다운 변경 즉시 적용·저장·접근성 레이블 갱신, 카드 query parameter·fragment 보존, 설정 변경과의 선택값 동기화를 DOM 테스트로 확인했다.
-
-## 우측 메뉴 번역 보완
-
-메뉴 제목, 카드 맞히기(Cardle), 스파인 뷰어, 소셜 아이콘 설명과 함께 현재 원본 API의 11개 그룹·33명 이름을 한국어 사전에 추가했다. 유닛의 `unitName`과 메뉴가 실제로 표시하는 `unitHiragana`를 모두 처리한다. API 요청·탐색 ID와 원본 데이터는 유지한다.
-
-메뉴 목록 기준: <https://api.shinycolors.moe/info/unitInfo>, 2026-10-29 조회. 테스트 fixture에는 메뉴에 필요한 유닛 ID·이름·색상과 아이돌 ID·이름만 저장한다.
-
-단위 테스트 49개 통과, 기존 9개 건너뜀. 실제 offcanvas 컴포넌트를 연 DOM 테스트에서 모든 그룹을 펼쳐 한국어 이름과 원래 이동 ID를 확인했고, 메뉴를 연 채 언어를 되돌렸을 때 원문으로 바뀌는지도 확인했다. 이미지 대체 설명과 소스 코드·이메일 등 아이콘의 접근성 문구도 번역했다. 새로 추가되는 미등록 이름은 원문으로 표시한다.
+원본 CSS deep selector와 일부 CommonJS 의존성의 빌드 경고는 남아 있다.

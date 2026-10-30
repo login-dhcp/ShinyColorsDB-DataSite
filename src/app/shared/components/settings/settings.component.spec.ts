@@ -22,7 +22,7 @@ describe('SettingsComponent', () => {
     .compileComponents();
 
     TestBed.inject(NgbConfig).animation = false;
-    TestBed.inject(TranslationService).setLanguage('zh-JP');
+    TestBed.inject(TranslationService).setLanguage('en-US');
     fixture = TestBed.createComponent(SettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -48,10 +48,11 @@ describe('SettingsComponent', () => {
 
   it('offers Korean and applies it to the existing page only after confirmation', () => {
     const selection = openSettings();
-    expect(selection.querySelector('option[value="ko-KR"]')?.textContent).toBe('한국어');
+    expect(Array.from(selection.options, option => option.textContent)).toEqual(['KR', 'EN', 'JP', 'CN']);
+    expect(selection.querySelector('option[value="ko-KR"]')?.textContent).toBe('KR');
     selection.value = 'ko-KR';
     selection.dispatchEvent(new Event('change'));
-    expect(TestBed.inject(TranslationService).language()).toBe('zh-JP');
+    expect(TestBed.inject(TranslationService).language()).toBe('en-US');
     document.querySelector<HTMLButtonElement>('.modal-footer .btn-primary')!.click();
     TestBed.tick();
     fixture.detectChanges();
@@ -66,7 +67,7 @@ describe('SettingsComponent', () => {
     selection.dispatchEvent(new Event('change'));
     document.querySelector<HTMLButtonElement>('.modal-footer .btn-secondary')!.click();
     TestBed.tick();
-    expect(TestBed.inject(TranslationService).language()).toBe('zh-JP');
-    expect(openSettings().value).toBe('zh-JP');
+    expect(TestBed.inject(TranslationService).language()).toBe('en-US');
+    expect(openSettings().value).toBe('en-US');
   });
 });

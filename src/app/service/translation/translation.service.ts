@@ -1,7 +1,7 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { effect, inject, Injectable, makeStateKey, PLATFORM_ID, REQUEST, signal, TransferState } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { CATALOGS, Language, LANGUAGE_OPTIONS, normalizeLanguage } from './language-catalogs';
+import { CATALOGS, DEFAULT_LANGUAGE, Language, LANGUAGE_OPTIONS, normalizeLanguage } from './language-catalogs';
 
 const preferenceKey = 'shinycolors.language';
 export const LANGUAGE_STATE = makeStateKey<Language>('shinycolors-language');
@@ -27,7 +27,7 @@ export class TranslationService {
     if (!this.browser) this.transferState.set(LANGUAGE_STATE, this.language());
     effect(() => {
       const language = this.language();
-      this.document.documentElement.lang = language === 'zh-JP' ? 'zh-Hant' : language;
+      this.document.documentElement.lang = language;
       this.title.setTitle(this.translate(this.pageTitle()));
       for (const tag of Object.values(this.pageMetadata())) {
         this.meta.updateTag({ ...tag, content: this.translate(tag.content) });
@@ -37,7 +37,7 @@ export class TranslationService {
 
   private resolveLanguage(): Language {
     if (this.browser && this.transferState.hasKey(LANGUAGE_STATE)) {
-      const language = this.transferState.get(LANGUAGE_STATE, 'zh-JP');
+      const language = normalizeLanguage(this.transferState.get(LANGUAGE_STATE, DEFAULT_LANGUAGE)) ?? DEFAULT_LANGUAGE;
       this.transferState.remove(LANGUAGE_STATE);
       return language;
     }
@@ -55,15 +55,7 @@ export class TranslationService {
         if (saved) return saved;
       } catch { /* Storage can be unavailable in privacy modes. */ }
     }
-    const preferred = (request?.headers.get('accept-language') ?? (this.browser ? this.document.defaultView?.navigator.languages?.join(',') : '') ?? '')
-      .split(',')
-      .map(entry => {
-        const [code, quality] = entry.trim().split(';q=');
-        return { language: normalizeLanguage(code), quality: quality === undefined ? 1 : Number(quality) };
-      })
-      .filter(entry => entry.language && entry.quality > 0)
-      .sort((a, b) => b.quality - a.quality)[0]?.language;
-    return preferred ?? 'zh-JP';
+    return DEFAULT_LANGUAGE;
   }
 
   setLanguage(value: string): void {

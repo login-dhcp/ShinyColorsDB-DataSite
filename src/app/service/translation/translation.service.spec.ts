@@ -32,25 +32,47 @@ describe('TranslationService', () => {
     expect(service.translate('【原文のカード】櫻木真乃')).toBe('【原文のカード】櫻木真乃');
     expect(service.translate(42)).toBe('42');
     expect(service.translate('constructor')).toBe('constructor');
-    expect(TestBed.inject(TransferState).get(LANGUAGE_STATE, 'zh-JP')).toBe('ko-KR');
+    expect(TestBed.inject(TransferState).get(LANGUAGE_STATE, 'ko-KR')).toBe('ko-KR');
   });
 
   it('honors an explicit language before a saved cookie or browser preference', () => {
-    const service = server('http://localhost/?lang=zh-JP', {
+    const service = server('http://localhost/?lang=JP', {
       cookie: 'shinycolors.language=ko-KR', 'accept-language': 'ko-KR',
     });
-    expect(service.language()).toBe('zh-JP');
-    expect(service.translate('首頁')).toBe('首頁');
+    expect(service.language()).toBe('ja-JP');
+    expect(service.translate('首頁')).toBe('ホーム');
   });
 
-  it('restores saved server preferences and respects Accept-Language quality', () => {
+  it('restores saved server preferences before the default', () => {
     const service = server('http://localhost/', { cookie: 'shinycolors.language=ko-KR', 'accept-language': 'ja-JP' });
     expect(service.language()).toBe('ko-KR');
   });
 
-  it('selects the highest supported nonzero Accept-Language preference', () => {
-    const service = server('http://localhost/', { 'accept-language': 'ja-JP;q=0, en-US;q=0.3, ko-KR;q=0.9' });
+  it('uses Korean by default regardless of the browser language', () => {
+    const service = server('http://localhost/', { 'accept-language': 'en-US, ja-JP;q=0.9, zh-CN;q=0.8' });
     expect(service.language()).toBe('ko-KR');
+  });
+
+  it('defaults to Korean in the browser with no saved choice', () => {
+    TestBed.configureTestingModule({});
+    expect(TestBed.inject(TranslationService).language()).toBe('ko-KR');
+  });
+
+  it('restores a saved English selection instead of overriding it with the Korean default', () => {
+    localStorage.setItem('shinycolors.language', 'en-US');
+    TestBed.configureTestingModule({});
+    const service = TestBed.inject(TranslationService);
+    expect(service.language()).toBe('en-US');
+    expect(service.translate('最新更新')).toBe('Latest Updates');
+  });
+
+  it('renders current UI strings in English from the EN URL code', () => {
+    const service = server('http://localhost/?lang=EN', { cookie: 'shinycolors.language=ko-KR' });
+    expect(service.language()).toBe('en-US');
+    expect(service.translate('設定')).toBe('Settings');
+    expect(service.translate('ＣＤ情報')).toBe('CD Information');
+    expect(service.translate('技能篩選')).toBe('Skill Search');
+    expect(service.translate('Icon of idol 櫻木真乃')).toBe('Idol icon Mano Sakuragi');
   });
 
   it('does not access browser-only document properties for a server request without cookies', () => {
@@ -115,17 +137,17 @@ describe('TranslationService', () => {
   it('updates the page title and metadata when switching languages without reloading', () => {
     TestBed.configureTestingModule({});
     const service = TestBed.inject(TranslationService);
-    service.setLanguage('zh-JP');
+    service.setLanguage('en-US');
     service.setTitle(' ~ 出卡時間表 ~ ');
     service.updateTag({ name: 'description', content: '卡名: 原文\n 稀有度: P_SSR' });
     TestBed.tick();
-    expect(TestBed.inject(Title).getTitle()).toBe('~ 出卡時間表 ~');
+    expect(TestBed.inject(Title).getTitle()).toBe('Card Release History');
     service.setLanguage('ko-KR');
     TestBed.tick();
     expect(TestBed.inject(Title).getTitle()).toBe('카드 출시표');
     expect(TestBed.inject(Meta).getTag('name="description"')?.content).toBe('카드명: 原文\n 레어도: P_SSR');
-    service.setLanguage('zh-JP');
+    service.setLanguage('en-US');
     TestBed.tick();
-    expect(TestBed.inject(Title).getTitle()).toBe('~ 出卡時間表 ~');
+    expect(TestBed.inject(Title).getTitle()).toBe('Card Release History');
   });
 });

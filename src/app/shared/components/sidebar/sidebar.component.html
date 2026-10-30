@@ -9,7 +9,8 @@
       <select id="headerLanguageSelection" name="headerLanguage" class="form-select form-select-sm language-select"
         [attr.aria-label]="'選擇語言' | translate" (change)="changeLanguage($event)">
         @for (option of translation.options; track option.code) {
-          <option [value]="option.code" [selected]="option.code === translation.language()">{{ option.label }}</option>
+          <option [value]="option.code" [selected]="option.code === translation.language()"
+            [attr.selected]="option.code === translation.language() ? '' : null">{{ option.label }}</option>
         }
       </select>
     <button (click)="open(sidebar)" role="button" [attr.aria-label]="'Open menu' | translate"

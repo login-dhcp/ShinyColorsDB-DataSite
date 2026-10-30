@@ -2,7 +2,7 @@ import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, OnInit, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslationService } from 'src/app/service/translation/translation.service';
-import { Language, normalizeLanguage } from 'src/app/service/translation/language-catalogs';
+import { DEFAULT_LANGUAGE, Language, normalizeLanguage } from 'src/app/service/translation/language-catalogs';
 
 @Component({
   imports: [TranslationPipe],
@@ -13,7 +13,7 @@ import { Language, normalizeLanguage } from 'src/app/service/translation/languag
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  pendingLanguage: Language = 'zh-JP';
+  pendingLanguage: Language = DEFAULT_LANGUAGE;
 
   constructor(private modalService: NgbModal, public translation: TranslationService) { }
 
