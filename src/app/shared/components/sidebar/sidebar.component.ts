@@ -6,6 +6,7 @@ import { NgbAccordionModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { UtilitiesService } from 'src/app/service/utilities/utilities.service';
 import { CharlistComponent } from '../charlist/charlist.component';
 import { SettingsComponent } from '../settings/settings.component';
+import { TranslationService } from 'src/app/service/translation/translation.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -33,6 +34,7 @@ export class SidebarComponent implements OnInit {
   title!: string;
 
   private offcanvasService = inject(NgbOffcanvas);
+  readonly translation = inject(TranslationService);
 
   constructor(private utilsService: UtilitiesService) { }
 
@@ -44,6 +46,10 @@ export class SidebarComponent implements OnInit {
 
   onSideBarClick() {
     this.showSideBar = !this.showSideBar;
+  }
+
+  changeLanguage(event: Event): void {
+    this.translation.setLanguage((event.target as HTMLSelectElement).value);
   }
 
   onCharlistClick(event: boolean) {

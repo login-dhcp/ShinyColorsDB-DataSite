@@ -4,6 +4,25 @@
   cursor: pointer;
 }
 
+.header-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-title h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-controls {
+  flex: 0 0 auto;
+}
+
+.language-select {
+  width: 8.25rem;
+}
+
 h1 {
   font-family: 'Noto Sans JP', sans-serif;
 }

@@ -1,9 +1,17 @@
 <nav class="bg-light navbar w-100 justify-content-center sticky-top">
   <div class="container-fluid d-flex align-items-center justify-content-between m-0">
-    <div>
+    <div class="header-title">
       <!--h3 class="h3 text-center titleFont">{{this.title}}</h3-->
       <h2 class="h2 m-2">{{ (this.title) | translate }}</h2>
     </div>
+    <div class="header-controls d-flex align-items-center gap-2">
+      <label class="visually-hidden" for="headerLanguageSelection">{{ '選擇語言' | translate }}</label>
+      <select id="headerLanguageSelection" name="headerLanguage" class="form-select form-select-sm language-select"
+        [attr.aria-label]="'選擇語言' | translate" (change)="changeLanguage($event)">
+        @for (option of translation.options; track option.code) {
+          <option [value]="option.code" [selected]="option.code === translation.language()">{{ option.label }}</option>
+        }
+      </select>
     <button (click)="open(sidebar)" role="button" [attr.aria-label]="'Open menu' | translate"
       class="navbar-brand btn d-inline-block align-text-top m-0">
       <svg class="menu-icon align-middle" viewBox="0 0 24 24" fill="none"
@@ -14,6 +22,7 @@
             stroke="#3880ff" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round"></path> </g></svg>
     </button>
+    </div>
   </div>
 </nav>
 <div class="d-flex justify-content-center d-none">
