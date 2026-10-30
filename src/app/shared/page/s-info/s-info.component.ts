@@ -1,6 +1,7 @@
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, OnChanges, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 
 import { environment } from 'src/environments/environment';
 
@@ -22,6 +23,7 @@ import { PicCarouselComponent } from '../../components/pic-carousel/pic-carousel
 @Component({
   selector: 'app-s-info',
   imports: [
+    TranslationPipe,
     CommonCriteriaComponent,
     PicCarouselComponent,
     PanelInfoComponent,
@@ -53,8 +55,8 @@ export class SInfoComponent implements OnInit {
     public scUrlService: ShinyColorsUrlService,
     private route: ActivatedRoute,
     private router: Router,
-    private meta: Meta,
-    private title: Title,
+    private meta: TranslationService,
+    private title: TranslationService,
   ) {
     this.supportSkillBound = utilsService.supportSkillBound();
   }

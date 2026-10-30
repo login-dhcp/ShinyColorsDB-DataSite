@@ -7,11 +7,11 @@
       <div class="d-flex align-items-center">
         <img
           [src]="this.scUrlService.getIdolSmlIcon(this.cardInfo.idolId)"
-          [alt]="'Icon of idol'"
+          [alt]="('Icon of idol') | translate"
           width="30px"
           height="30px">
         <span class="ps-1">
-          {{this.cardInfo.cardName.replace(this.regExp,"$2")}}
+          {{ (this.cardInfo.cardName.replace(this.regExp,"$2")) | translate }}
         </span>
       </div>
     </a>
@@ -20,7 +20,7 @@
       <div></div>
     }
     <div class="float-end">
-      {{ this.cardInfo.releaseDate | date: "yyyy-MM-dd" }}
+      {{ (this.cardInfo.releaseDate | date: "yyyy-MM-dd") | translate }}
     </div>
   </div>
   <a
@@ -28,7 +28,7 @@
     [queryParams]="{ uuid: this.cardInfo.cardUuid }">
     <img
       [src]="this.getPictureUrl()"
-      [alt]="'Picture of ' + this.cardInfo.cardName"
+      [alt]="('Picture of ' + this.cardInfo.cardName) | translate"
       [ngClass]="{ 'card-img-top': !this.isHome, 'card-img': this.isHome, 'rounded-0': this.isHome, 'p-0': this.isHome }"
       width="1136"
       height="640"
@@ -36,7 +36,7 @@
     <div class="card-body p-0 pb-2">
       <div class="card-text p-2">
         <span class="badge text-bg-info ms-1 me-1">
-          {{this.cardInfo.getMethod}}
+          {{ (this.cardInfo.getMethod) | translate }}
         </span>
         <span class="badge ms-1 me-1"
           [ngClass]="{
@@ -45,11 +45,11 @@
             'bg-primary': this.cardInfo.cardType.endsWith('_SR'),
             'bg-secondary': this.cardInfo.cardType.endsWith('_R') || this.cardInfo.cardType.endsWith('_N'),
           }">
-          {{this.cardInfo.cardType}}
+          {{ (this.cardInfo.cardType) | translate }}
         </span>
       </div>
       <h5 class="card-title text-center">
-        {{ this.cardInfo.cardName.replace(this.regExp, "$1") }}
+        {{ (this.cardInfo.cardName.replace(this.regExp, "$1")) | translate }}
       </h5>
     </div>
   </a>

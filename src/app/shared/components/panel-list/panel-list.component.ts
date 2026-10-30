@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +7,7 @@ import { ShinyColorsUrlService } from 'src/app/service/shinycolors-url/shinycolo
 @Component({
   selector: 'app-panel-list',
   imports: [
+    TranslationPipe,
     CommonModule,
     NgbPopover,
   ],

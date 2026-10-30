@@ -1,5 +1,6 @@
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 
 
 import { ShinyColorsApiService } from 'src/app/service/shinycolors-api/shinycolors-api.service';
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
   imports: [
+    TranslationPipe,
     CardItemComponent,
     LiveInfoComponent,
     CdInfoComponent,
@@ -43,8 +45,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private utilsService: UtilitiesService,
     private scApiService: ShinyColorsApiService,
-    private title: Title,
-    private meta: Meta
+    private title: TranslationService,
+    private meta: TranslationService
   ) {
     this.scApiService.getLiveInfos().subscribe((data) => {
       this.liveInfo = data

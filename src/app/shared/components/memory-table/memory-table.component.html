@@ -2,35 +2,35 @@
   <thead>
     <tr>
       <th>#</th>
-      <th scope="col" i18n>技能名稱</th>
-      <th scope="col" i18n>Link/Charge</th>
+      <th scope="col" i18n>{{ '技能名稱' | translate }}</th>
+      <th scope="col" i18n>{{ 'Link/Charge' | translate }}</th>
     </tr>
   </thead>
   @for(mem of memoryList; track mem.memoryIndex; let i = $index) {
   <tbody>
     <tr>
-      <td [attr.rowspan]="this.chargeSkills.length == 0 ? 2 : 3" class="align-middle forLevel">Lv.{{ i + 1 }}</td>
-      <td>{{ mem.memoryTitle }}</td>
+      <td [attr.rowspan]="this.chargeSkills.length == 0 ? 2 : 3" class="align-middle forLevel">Lv.{{ (i + 1) | translate }}</td>
+      <td>{{ (mem.memoryTitle) | translate }}</td>
       <td rowspan="2" class="align-middle">
         @if(mem.extraEffect) {
-        <span class="wrapup">{{ this.addLineBreak(mem.extraEffect.extraEffectDesc) }}</span>
+        <span class="wrapup">{{ (this.addLineBreak(mem.extraEffect.extraEffectDesc)) | translate }}</span>
         }
       </td>
     </tr>
     <tr>
       <td class="align-middle">
-        <span class="wrapup">{{ this.addLineBreak(mem.memoryDesc) }}</span>
+        <span class="wrapup">{{ (this.addLineBreak(mem.memoryDesc)) | translate }}</span>
       </td>
     </tr>
     @if (this.chargeSkills.length !== 0) {
     <tr class="light-red">
       <td class="align-middle">
-        <span class="wrapup">{{ this.chargeSkills[i].skillName }}</span>
+        <span class="wrapup">{{ (this.chargeSkills[i].skillName) | translate }}</span>
         <br>
-        <span class="wrapup forLevel">(☆{{ this.chargeSkills[i].releaseEvolution }})</span>
+        <span class="wrapup forLevel">(☆{{ (this.chargeSkills[i].releaseEvolution) | translate }})</span>
       </td>
       <td class="align-middle">
-        <span class="wrapup">{{ this.chargeSkills[i].skillDesc }}</span>
+        <span class="wrapup">{{ (this.chargeSkills[i].skillDesc) | translate }}</span>
       </td>
     </tr>
     }

@@ -2,20 +2,20 @@
   <select class="form-select d-inline-block m-1" style="width: 40%;" (change)="this.subOption(); this.updateQueryStr()" #skillNameSelect>
     <option value subOption="0" selected>--</option>
     @for (i of this.skillList; track i) {
-    <option value={{i.supSkillName}} attr.subOption={{i.hasSubOption}}>{{i.supSkillName}}</option>
+    <option value={{i.supSkillName}} attr.subOption={{i.hasSubOption}}>{{ (i.supSkillName) | translate }}</option>
     }
   </select>
   <select class="form-select d-inline-block m-1" style="width: 40%;" (change)="this.updateQueryStr()" disabled #skillSubOption>
     <option value>--</option>
-    <option value="Vo">Vocal</option>
-    <option value="Da">Dance</option>
-    <option value="Vi">Visual</option>
-    <option value="Me">メンタル</option>
+    <option value="Vo">{{ 'Vocal' | translate }}</option>
+    <option value="Da">{{ 'Dance' | translate }}</option>
+    <option value="Vi">{{ 'Visual' | translate }}</option>
+    <option value="Me">{{ 'メンタル' | translate }}</option>
     <option value="Sp">SP</option>
-    <option value="体力">体力回復</option>
-    <option value="Vo上限">Vocal上限</option>
-    <option value="Da上限">Dance上限</option>
-    <option value="Vi上限">Visual上限</option>
+    <option value="体力">{{ '体力回復' | translate }}</option>
+    <option value="Vo上限">{{ 'Vocal上限' | translate }}</option>
+    <option value="Da上限">{{ 'Dance上限' | translate }}</option>
+    <option value="Vi上限">{{ 'Visual上限' | translate }}</option>
   </select>
-  <input type="number" name style="width: 20%;" class="form-control d-inline-block m-1" (change)="this.updateQueryStr()" placeholder="level" #skillLevelSelect>
+  <input type="number" name style="width: 20%;" class="form-control d-inline-block m-1" (change)="this.updateQueryStr()" [placeholder]="'level' | translate" #skillLevelSelect>
 </div>

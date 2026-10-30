@@ -1,6 +1,8 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  imports: [TranslationPipe],
   selector: 'app-common-criteria',
   standalone: true,
   templateUrl: './common-criteria.component.html',

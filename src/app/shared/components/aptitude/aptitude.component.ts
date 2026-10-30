@@ -1,8 +1,10 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { CardProduceAptitude } from '../../interfaces/cardProduceAptitude';
 
 @Component({
+  imports: [TranslationPipe],
   selector: 'app-aptitude',
   standalone: true,
   templateUrl: './aptitude.component.html',

@@ -1,8 +1,10 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-card-item-holder',
-  imports: [],
+  imports: [
+    TranslationPipe,],
   templateUrl: './card-item-holder.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './card-item-holder.component.css'

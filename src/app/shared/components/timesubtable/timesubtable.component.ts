@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { DateTime } from 'luxon';
@@ -7,6 +8,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-timesubtable',
   imports: [
+    TranslationPipe,
     RouterModule,
   ],
   templateUrl: './timesubtable.component.html',

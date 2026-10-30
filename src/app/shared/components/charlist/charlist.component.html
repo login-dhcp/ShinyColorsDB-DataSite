@@ -9,8 +9,8 @@
           [src]="this.scUrlService.getUnitIconUri(unit.unitId)"
           width="25"
           height="25"
-          [alt]="'Icon of unit ' + unit.unitName" />
-        <span class="ms-2">{{ unit.unitHiragana }}</span>
+          [alt]="('Icon of unit ' + unit.unitName) | translate" />
+        <span class="ms-2">{{ (unit.unitHiragana) | translate }}</span>
       </button>
     </h2>
     <div ngbAccordionCollapse>
@@ -27,10 +27,10 @@
               [queryParams]="{ idolid: idol.idolId }">
               <img
                 [src]="this.scUrlService.getIdolSmlIcon(idol.idolId)"
-                [alt]="'Icon of idol ' + idol.idolName"
+                [alt]="('Icon of idol ' + idol.idolName) | translate"
                 width="40"
                 height="40" />
-              <span class="ms-2">{{ idol.idolName }}</span>
+              <span class="ms-2">{{ (idol.idolName) | translate }}</span>
             </a>
             }
           </div>

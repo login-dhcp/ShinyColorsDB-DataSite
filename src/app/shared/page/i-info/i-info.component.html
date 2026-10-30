@@ -3,10 +3,10 @@
   <div class="d-flex col-lg-3 col-md-4 col-sm-12 container justify-content-center" id="divIdolData">
     <div class="w-100">
       <div class="pt-2 d-block">
-        <h1 class="w-100 text-center">{{ this.idolInfo.idolName }}</h1>
+        <h1 class="w-100 text-center">{{ (this.idolInfo.idolName) | translate }}</h1>
         <img
           [src]="this.scUrlService.getIdolIcon(this.idolInfo.idolId)"
-          [alt]="'Icon of ' + this.idolInfo.idolName"
+          [alt]="('Icon of ' + this.idolInfo.idolName) | translate"
           class="img-fluid mx-auto d-block"
           width="400"
           height="400" />
@@ -16,57 +16,57 @@
           <tbody>
             <tr class="row">
               <th class="col-2"></th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.hiragana }}</td>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.hiragana) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>姓名</th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.idolName }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '姓名' | translate }}</th>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.idolName) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>色碼</th>
-              <td class="col-10 d-flex align-items-center" [ngStyle]="{color: this.idolInfo.color1}">■ {{ this.idolInfo.color2 }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '色碼' | translate }}</th>
+              <td class="col-10 d-flex align-items-center" [ngStyle]="{color: this.idolInfo.color1}">■ {{ (this.idolInfo.color2) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>所屬</th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.unit.unitName }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '所屬' | translate }}</th>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.unit.unitName) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2 d-flex align-items-center" i18n>年齡</th>
-              <td class="col-4 d-flex align-items-center">{{ this.idolInfo.age }}</td>
-              <th class="col-2 d-flex align-items-center border-start" i18n>血型</th>
-              <td class="col-4 d-flex align-items-center">{{ this.idolInfo.bloodType }}</td>
+              <th class="col-2 d-flex align-items-center" i18n>{{ '年齡' | translate }}</th>
+              <td class="col-4 d-flex align-items-center">{{ (this.idolInfo.age) | translate }}</td>
+              <th class="col-2 d-flex align-items-center border-start" i18n>{{ '血型' | translate }}</th>
+              <td class="col-4 d-flex align-items-center">{{ (this.idolInfo.bloodType) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2 d-flex align-items-center" i18n>生日</th>
-              <td class="col-4 d-flex align-items-center">{{ this.idolInfo.birthday }}</td>
-              <th class="col-2 d-flex align-items-center border-start" i18n>星座</th>
-              <td class="col-4 d-flex align-items-center">{{ this.idolInfo.starSign }}</td>
+              <th class="col-2 d-flex align-items-center" i18n>{{ '生日' | translate }}</th>
+              <td class="col-4 d-flex align-items-center">{{ (this.idolInfo.birthday) | translate }}</td>
+              <th class="col-2 d-flex align-items-center border-start" i18n>{{ '星座' | translate }}</th>
+              <td class="col-4 d-flex align-items-center">{{ (this.idolInfo.starSign) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2 d-flex align-items-center" i18n>身高</th>
-              <td class="col-4 d-flex align-items-center">{{ this.idolInfo.height }}</td>
-              <th class="col-2 d-flex align-items-center border-start" i18n>體重</th>
-              <td class="col-4 d-flex align-items-center">{{ this.idolInfo.weight }}</td>
+              <th class="col-2 d-flex align-items-center" i18n>{{ '身高' | translate }}</th>
+              <td class="col-4 d-flex align-items-center">{{ (this.idolInfo.height) | translate }}</td>
+              <th class="col-2 d-flex align-items-center border-start" i18n>{{ '體重' | translate }}</th>
+              <td class="col-4 d-flex align-items-center">{{ (this.idolInfo.weight) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>三圍</th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.threeSize }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '三圍' | translate }}</th>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.threeSize) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>出身</th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.birthPlace }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '出身' | translate }}</th>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.birthPlace) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>興趣</th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.interest }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '興趣' | translate }}</th>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.interest) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>特技</th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.specialSkill }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '特技' | translate }}</th>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.specialSkill) | translate }}</td>
             </tr>
             <tr class="row">
-              <th class="col-2  d-flex align-items-center" i18n>聲優</th>
-              <td class="col-10 d-flex align-items-center">{{ this.idolInfo.preCv ? this.idolInfo.preCv + " → " : '' }}{{ this.idolInfo.cv }}</td>
+              <th class="col-2  d-flex align-items-center" i18n>{{ '聲優' | translate }}</th>
+              <td class="col-10 d-flex align-items-center">{{ (this.idolInfo.preCv ? this.idolInfo.preCv + " → " : '') | translate }}{{ (this.idolInfo.cv) | translate }}</td>
             </tr>
           </tbody>
         </table>
@@ -79,13 +79,13 @@
         <div class="card-header w-100">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <a href="javascript: void(0);" class="nav-link" (click)="tabProduce()" [ngClass]="{'disabled': isTabProduce(), 'active': isTabProduce()}" style="font-family: Meiryo" i18n>P卡列表</a>
+              <a href="javascript: void(0);" class="nav-link" (click)="tabProduce()" [ngClass]="{'disabled': isTabProduce(), 'active': isTabProduce()}" style="font-family: Meiryo" i18n>{{ 'P卡列表' | translate }}</a>
             </li>
             <li class="nav-item">
-              <a href="javascript: void(0);" class="nav-link" (click)="tabSupport()" [ngClass]="{'disabled': isTabSupport(), 'active': isTabSupport()}" style="font-family: Meiryo" i18n>S卡列表</a>
+              <a href="javascript: void(0);" class="nav-link" (click)="tabSupport()" [ngClass]="{'disabled': isTabSupport(), 'active': isTabSupport()}" style="font-family: Meiryo" i18n>{{ 'S卡列表' | translate }}</a>
             </li>
             <li class="nav-item">
-              <a href="javascript: void(0);" class="nav-link" (click)="tabEvent()" [ngClass]="{'disabled': isTabEvent(), 'active': isTabEvent()}" style="font-family: Meiryo" i18n>劇情列表</a>
+              <a href="javascript: void(0);" class="nav-link" (click)="tabEvent()" [ngClass]="{'disabled': isTabEvent(), 'active': isTabEvent()}" style="font-family: Meiryo" i18n>{{ '劇情列表' | translate }}</a>
             </li>
           </ul>
         </div>
@@ -120,7 +120,7 @@
             @if (!this.pUR.length && !this.pSSR.length && !this.pSR.length && !this.pR.length) {
             <div class="d-flex align-items-center justify-content-center w-100">
               <div class="d-flex ">
-                <div class="display-4" i18n>なし</div>
+                <div class="display-4" i18n>{{ 'なし' | translate }}</div>
               </div>
             </div>
             }
@@ -161,7 +161,7 @@
             @if (!this.sSSR.length && !this.sSR.length && !this.sR.length && !this.sN.length) {
             <div class="d-flex align-items-center justify-content-center w-100">
               <div class="d-flex ">
-                <div class="display-4" i18n>なし</div>
+                <div class="display-4" i18n>{{ 'なし' | translate }}</div>
               </div>
             </div>
             }
@@ -172,7 +172,7 @@
               @if (this.getEventsByType(k.albumType).length != 0) {
               <div ngbAccordionItem>
                 <h3 ngbAccordionHeader>
-                  <button ngbAccordionButton>{{k.title}}</button>
+                  <button ngbAccordionButton>{{ (k.title) | translate }}</button>
                 </h3>
                 <div ngbAccordionCollapse>
                   <div ngbAccordionBody class="pt-1 pb-1 ps-2 pe-2">
@@ -187,7 +187,7 @@
                                     d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"></path> </g> </g></svg>
                           </div>
                           <div class="ps-2 link">
-                            {{e.title}}
+                            {{ (e.title) | translate }}
                           </div>
                         </a>
                         }
@@ -202,7 +202,7 @@
             @if (!this.album.communications.length) {
             <div class="d-flex align-items-center justify-content-center w-100">
               <div class="d-flex ">
-                <div class="display-4" i18n>なし</div>
+                <div class="display-4" i18n>{{ 'なし' | translate }}</div>
               </div>
             </div>
             }

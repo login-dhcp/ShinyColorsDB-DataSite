@@ -1,6 +1,7 @@
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,6 +24,7 @@ import { TabStatus } from '../../enums/tabStatus';
 @Component({
     selector: 'app-i-info',
     imports: [
+    TranslationPipe,
         NgbAccordionModule,
         CommonModule,
         RouterModule,
@@ -60,8 +62,8 @@ export class IInfoComponent implements OnInit {
     public scStateService: ShinyColorsStateService,
     private router: Router,
     private route: ActivatedRoute,
-    private title: Title,
-    private meta: Meta
+    private title: TranslationService,
+    private meta: TranslationService
   ) { }
 
   private classifyType(card: Card): void {

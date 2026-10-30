@@ -106,6 +106,7 @@ export class PanelInfoComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   ngOnChanges(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
 
     this.panelInfo.forEach((e) => {
       if (!this.loadedIcon.has(e.panelIcon)) {
@@ -140,6 +141,7 @@ export class PanelInfoComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     if (!this.panelCanvas && this.app) {
       return;
     }

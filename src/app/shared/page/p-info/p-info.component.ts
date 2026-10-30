@@ -1,6 +1,7 @@
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 
 import { environment } from 'src/environments/environment';
 
@@ -21,6 +22,7 @@ import { CardStatusComponent } from '../../components/card-status/card-status.co
 @Component({
   selector: 'app-p-info',
   imports: [
+    TranslationPipe,
     PicCarouselComponent,
     CommonCriteriaComponent,
     PanelInfoComponent,
@@ -48,8 +50,8 @@ export class PInfoComponent implements OnInit {
     private scApiService: ShinyColorsApiService,
     private route: ActivatedRoute,
     private router: Router,
-    private meta: Meta,
-    private title: Title
+    private meta: TranslationService,
+    private title: TranslationService
   ) { }
 
   ngOnInit(): void {

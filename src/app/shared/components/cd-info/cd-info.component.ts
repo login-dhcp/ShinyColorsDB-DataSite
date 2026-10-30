@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CD } from '../../interfaces/cd';
 
@@ -5,7 +6,8 @@ import { ShinyColorsUrlService } from 'src/app/service/shinycolors-url/shinycolo
 
 @Component({
   selector: 'app-cd-info',
-  imports: [],
+  imports: [
+    TranslationPipe,],
   templateUrl: './cd-info.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './cd-info.component.css',

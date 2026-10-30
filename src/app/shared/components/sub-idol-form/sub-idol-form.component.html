@@ -7,7 +7,7 @@
         <input id="queryUnitId{{unit.unitId}}" type="checkbox" value class="form-check-input" (change)="toggleAllIdols($event); updateSelectedIdols()">
         <label for="queryUnitId{{unit.unitId}}" class="form-check-label d-flex align-items-center">
           <img [src]="this.getUnitIconUri(unit.unitId)" alt height="30px" width="30px" class="img-fluid">
-          <p class="h4 mb-0 w-100">{{unit.unitHiragana}}</p>
+          <p class="h4 mb-0 w-100">{{ (unit.unitHiragana) | translate }}</p>
         </label>
       </td>
     </tr>
@@ -18,7 +18,7 @@
         <label for="queryIdolId{{idol.idolId}}" class="form-check-label">
           <img [src]="this.getIdolSmlIcon(idol.idolId)" height="30" width="30px" alt>
           <br class="d-block d-md-none">
-          {{idol.idolFirstName}}
+          {{ (idol.idolFirstName) | translate }}
         </label>
       </td>
       }

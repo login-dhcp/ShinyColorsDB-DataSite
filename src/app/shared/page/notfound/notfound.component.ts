@@ -1,12 +1,14 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
+import { TranslationService } from 'src/app/service/translation/translation.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { UtilitiesService } from 'src/app/service/utilities/utilities.service';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-notfound',
   imports: [
+    TranslationPipe,
     RouterModule,
   ],
   templateUrl: './notfound.component.html',
@@ -18,7 +20,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class NotfoundComponent implements OnInit {
   constructor(
-    private title: Title,
+    private title: TranslationService,
     private utilsService: UtilitiesService,
   ) {
     // HTTP 404 status is set via serverRoutes (app.routes.server.ts). Setting it here

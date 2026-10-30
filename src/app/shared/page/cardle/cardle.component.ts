@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, QueryList, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
+import { effect, AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, QueryList, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { Application, Sprite, Assets, Texture, Rectangle, BackgroundSystem } from 'pixi.js';
 import { ShinyColorsApiService } from 'src/app/service/shinycolors-api/shinycolors-api.service';
@@ -6,12 +8,12 @@ import { ShinyColorsUrlService } from 'src/app/service/shinycolors-url/shinycolo
 
 import { UtilitiesService } from 'src/app/service/utilities/utilities.service';
 import { Cardle } from '../../interfaces/cardle';
-import { Meta, Title } from '@angular/platform-browser';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-cardle',
     imports: [
+    TranslationPipe,
         NgbModalModule,
         CommonModule
     ],
@@ -63,9 +65,15 @@ export class CardleComponent implements OnInit, AfterViewInit {
     private scApiService: ShinyColorsApiService,
     private scUrlService: ShinyColorsUrlService,
     private modalService: NgbModal,
-    private meta: Meta,
-    private title: Title,
+    private meta: TranslationService,
+    private title: TranslationService,
   ) {
+    effect(() => {
+      this.title.language();
+      for (const group of this.cardList?.nativeElement.querySelectorAll('optgroup') ?? []) {
+        group.label = this.title.translate(group.dataset['label'] ?? group.label);
+      }
+    });
     Assets.setPreferences({ crossOrigin: 'anonymous', preferCreateImageBitmap: false });
 
     this.title.setTitle('ShinyColors Cardle');
@@ -192,8 +200,10 @@ export class CardleComponent implements OnInit, AfterViewInit {
   _initCardList(): void {
     const produce = document.createElement('optgroup'),
       support = document.createElement('optgroup');
-    produce.setAttribute('label', 'Produce');
-    support.setAttribute('label', 'Support');
+    produce.dataset['label'] = 'Produce';
+    produce.setAttribute('label', this.title.translate('Produce'));
+    support.dataset['label'] = 'Support';
+    support.setAttribute('label', this.title.translate('Support'));
     this.scApiService.getIdolInfo(this.selectedIdol).subscribe((data) => {
       data.cardLists.forEach((card) => {
         const cardOption = document.createElement('option');

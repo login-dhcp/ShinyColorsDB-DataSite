@@ -2,9 +2,9 @@
   <div class="container-fluid d-flex align-items-center justify-content-between m-0">
     <div>
       <!--h3 class="h3 text-center titleFont">{{this.title}}</h3-->
-      <h2 class="h2 m-2">{{this.title}}</h2>
+      <h2 class="h2 m-2">{{ (this.title) | translate }}</h2>
     </div>
-    <button (click)="open(sidebar)" role="button"
+    <button (click)="open(sidebar)" role="button" [attr.aria-label]="'Open menu' | translate"
       class="navbar-brand btn d-inline-block align-text-top m-0">
       <svg class="menu-icon align-middle" viewBox="0 0 24 24" fill="none"
         xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier"
@@ -18,14 +18,14 @@
 </nav>
 <div class="d-flex justify-content-center d-none">
   <img src="/assets/283.png" width="233" height="233"
-    alt="Icon of 283 production" class="img-fluid">
+    [alt]="'Icon of 283 production' | translate" class="img-fluid">
 </div>
 <ng-template #sidebar let-offcanvas>
   <div class="offcanvas-header p-3">
     <div class="container d-flex align-items-center justify-content-between">
       <h3 class="h3 m-0">ShinyColorsDB</h3>
       <button role="button" class="btn p-0"
-        aria-label="Close"
+        [attr.aria-label]="'Close' | translate"
         (click)="offcanvas.dismiss()">
         <svg class="menu-icon align-middle" viewBox="0 0 24 24" fill="none"
           xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier"
@@ -42,13 +42,13 @@
     style="background-color: #34eb3a;">
     <nav class="nav justify-content-center">
       <a class="nav-link" [routerLink]="['/']"
-        (click)="offcanvas.dismiss()">首頁</a>
+        (click)="offcanvas.dismiss()">{{ '首頁' | translate }}</a>
       <a class="nav-link" [routerLink]="['/timetable']"
-        (click)="offcanvas.dismiss()">歴史</a>
+        (click)="offcanvas.dismiss()">{{ '歴史' | translate }}</a>
       <a class="nav-link" [routerLink]="['/cardle']"
         (click)="offcanvas.dismiss()">Cardle</a>
       <a class="nav-link" [routerLink]="['/r-lookup']"
-        (click)="offcanvas.dismiss()">技能篩選</a>
+        (click)="offcanvas.dismiss()">{{ '技能篩選' | translate }}</a>
     </nav>
     <nav class="nav justify-content-center">
       <a href="https://spine.shinycolors.moe/" target="_blank"
@@ -59,7 +59,7 @@
         (idolClicked)="onCharlistClick($event)"></app-charlist>
     </nav>
     <div class="text-center m-3">&#64;Euphokumiko</div>
-    <!--app-settings></app-settings-->
+    <app-settings></app-settings>
 
     <div class="d-flex justify-content-evenly pb-3">
       <a href="https://github.com/ShinyColorsDB/ShinyColorsDB-DataSite"

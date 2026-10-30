@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { CardSupportSkill } from '../../interfaces/cardSupportSkill';
 import { environment } from 'src/environments/environment';
@@ -7,6 +8,7 @@ import { UtilitiesService } from 'src/app/service/utilities/utilities.service';
 @Component({
   selector: 'app-supskill-card',
   imports: [
+    TranslationPipe,
     CommonModule,
   ],
   templateUrl: './supskill-card.component.html',

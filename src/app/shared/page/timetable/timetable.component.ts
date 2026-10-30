@@ -1,5 +1,6 @@
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 
@@ -12,6 +13,7 @@ import { TimesubtableComponent } from '../../components/timesubtable/timesubtabl
 @Component({
   selector: 'app-timetable',
   imports: [
+    TranslationPipe,
     CommonModule,
     TimesubtableComponent,
   ],
@@ -40,8 +42,8 @@ export class TimetableComponent implements OnInit {
     private utilitiesService: UtilitiesService,
     private router: Router,
     private route: ActivatedRoute,
-    private title: Title,
-    private meta: Meta
+    private title: TranslationService,
+    private meta: TranslationService
   ) { }
 
   ngOnInit(): void {

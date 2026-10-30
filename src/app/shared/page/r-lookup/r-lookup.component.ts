@@ -1,6 +1,7 @@
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 
 import { catchError, of } from 'rxjs';
 
@@ -18,6 +19,7 @@ import { QueryResultModalComponent } from '../../components/query-result-modal/q
 @Component({
   selector: 'app-r-lookup',
   imports: [
+    TranslationPipe,
     SubSkillFormComponent,
     SubIdolFormComponent,
     QueryResultModalComponent,
@@ -52,8 +54,8 @@ export class RLookupComponent implements OnInit {
     private utilsService: UtilitiesService,
     private scApiService: ShinyColorsApiService,
     private router: Router,
-    private title: Title,
-    private meta: Meta
+    private title: TranslationService,
+    private meta: TranslationService
   ) {
     this.title.setTitle("~ 技能篩選 ~")
     this.utilsService.emitMobileTitle('技能篩選');

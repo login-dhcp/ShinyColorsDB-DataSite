@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QueryResult } from '../../interfaces/queryResult';
@@ -11,6 +12,7 @@ import { UtilitiesService } from 'src/app/service/utilities/utilities.service';
 @Component({
   selector: 'app-query-result-modal',
   imports: [
+    TranslationPipe,
     RouterModule
   ],
   templateUrl: './query-result-modal.component.html',

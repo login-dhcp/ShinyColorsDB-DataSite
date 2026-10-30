@@ -1,9 +1,11 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, ElementRef, Input, OnInit, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { Unit } from '../../interfaces/unit';
 
 import { environment } from 'src/environments/environment';
 
 @Component({
+  imports: [TranslationPipe],
   selector: 'app-sub-idol-form',
   standalone: true,
   templateUrl: './sub-idol-form.component.html',

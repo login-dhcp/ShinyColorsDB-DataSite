@@ -1,14 +1,14 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">搜尋結果</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <h4 class="modal-title" id="modal-basic-title">{{ '搜尋結果' | translate }}</h4>
+    <button type="button" class="btn-close" [attr.aria-label]="'Close' | translate" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
     <div class="row">
       @if (!this.queryResult.length) {
       <div class="col-12 p-2">
-        <p class="text-center m-0" i18n>沒有符合條件的結果</p>
+        <p class="text-center m-0" i18n>{{ '沒有符合條件的結果' | translate }}</p>
       </div>
       }
       @for (i of this.queryResult; track i) {
@@ -23,10 +23,10 @@
           <div class="col-9">
             <div class="card-body">
               <p class="card-title">
-                {{i.E_CardName.replace(this.regExp, "$1")}}
+                {{ (i.E_CardName.replace(this.regExp, "$1")) | translate }}
               </p>
               <div class="card-text">
-                Lv: {{this.getMinimumLevel(i)}}
+                {{ 'Lv:' | translate }} {{ (this.getMinimumLevel(i)) | translate }}
               </div>
             </div>
           </div>
@@ -45,6 +45,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">{{ 'Close' | translate }}</button>
   </div>
 </ng-template>

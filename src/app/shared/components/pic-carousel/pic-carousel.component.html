@@ -4,7 +4,7 @@
     <img
       #pic1
       [src]="this.scUrlService.getSupportCardUrl(this.enzaId)"
-      [alt]="'General image of ' + this.cardName"
+      [alt]="('General image of ' + this.cardName) | translate"
       class="img-fluid"
       width="1136"
       height="640" />
@@ -14,7 +14,7 @@
     <img
       #pic1
       [src]="this.scUrlService.getCardUrl(this.enzaId)"
-      [alt]="'General image of ' + this.cardName"
+      [alt]="('General image of ' + this.cardName) | translate"
       class="img-fluid"
       width="1136"
       height="640" />
@@ -39,7 +39,7 @@
     <img
       #pic2
       [src]="this.scUrlService.getIllustCardUrl(this.enzaId)"
-      [alt]="'Illust image of ' + this.cardName"
+      [alt]="('Illust image of ' + this.cardName) | translate"
       class="img-fluid"
       width="1136"
       height="640" />
@@ -49,7 +49,7 @@
     <img
       #pic2
       [src]="this.scUrlService.getFesCardUrl(this.enzaId)"
-      [alt]="'Fes image of ' + this.cardName"
+      [alt]="('Fes image of ' + this.cardName) | translate"
       class="img-fluid"
       width="1136"
       height="640" />

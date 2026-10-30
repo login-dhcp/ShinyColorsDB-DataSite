@@ -1,5 +1,6 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, Inject, Input, OnChanges, OnInit, PLATFORM_ID, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnChanges, OnDestroy, OnInit, PLATFORM_ID, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NgbCarousel, NgbCarouselModule, NgbSlideEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { ShinyColorsUrlService } from 'src/app/service/shinycolors-url/shinycolors-url.service';
@@ -8,13 +9,14 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-pic-carousel',
   imports: [
+    TranslationPipe,
     NgbCarouselModule
   ],
   templateUrl: './pic-carousel.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./pic-carousel.component.css']
 })
-export class PicCarouselComponent implements OnInit, OnChanges {
+export class PicCarouselComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('picCarousel') picCarousel!: NgbCarousel;
   @ViewChild('mov1') mov1!: ElementRef<HTMLVideoElement>;
   @ViewChild('mov2') mov2!: ElementRef<HTMLVideoElement>;
@@ -47,7 +49,7 @@ export class PicCarouselComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     if (!this.picCarousel) { return; }
     if (!isPlatformBrowser(this.platformId)) {
-      console.log("platform is not browser");
+      return;
     }
     this.picCarousel.select("img1");
     this.playThrough();
@@ -59,12 +61,13 @@ export class PicCarouselComponent implements OnInit, OnChanges {
       this.timeOutToClear = null;
     }
     if (!isPlatformBrowser(this.platformId)) {
-      console.log("platform is not browser");
+      return;
     }
     this.playThrough();
   }
 
   playThrough(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     if (this.picCarousel.activeId === "mov1") {
       this.mov1.nativeElement.play();
     }
@@ -86,7 +89,7 @@ export class PicCarouselComponent implements OnInit, OnChanges {
   onSlide(slideEvent: NgbSlideEvent) {
     if (!slideEvent.source) { return; }
     if (!isPlatformBrowser(this.platformId)) {
-      console.log("platform is not browser");
+      return;
     }
     switch (this.picCarousel.activeId) {
       case "mov1":
@@ -105,7 +108,7 @@ export class PicCarouselComponent implements OnInit, OnChanges {
   onSlid(slideEvent: NgbSlideEvent) {
     if (!slideEvent.source) { return; }
     if (!isPlatformBrowser(this.platformId)) {
-      console.log("platform is not browser");
+      return;
     }
     if (this.timeOutToClear) {
       clearTimeout(this.timeOutToClear);
@@ -119,9 +122,14 @@ export class PicCarouselComponent implements OnInit, OnChanges {
 
   onMovieEnded(): void {
     if (!isPlatformBrowser(this.platformId)) {
-      console.log("platform is not browser");
+      return;
     }
     this.picCarousel.next();
     this.playThrough();
+  }
+
+  ngOnDestroy(): void {
+    if (this.timeOutToClear) clearTimeout(this.timeOutToClear);
+    this.timeOutToClear = null;
   }
 }

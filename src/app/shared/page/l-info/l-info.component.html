@@ -1,11 +1,11 @@
 @if (this.liveInfo && this.unitInfo && this.idolInfo) {
 <div class="container-fluid row d-flex p-0 justify-content-center">
   <h3 class="h3 col-12 text-center">
-    {{this.liveInfo.liveTitle}}
+    {{ (this.liveInfo.liveTitle) | translate }}
   </h3>
   @if (this.liveInfo.liveSubtitle) {
   <h4 class="h4 col-12 text-center">
-    {{this.liveInfo.liveSubtitle}}
+    {{ (this.liveInfo.liveSubtitle) | translate }}
   </h4>
   }
   <div class="col-md-4 col-sm-12 d-flex justify-content-center row p-1">
@@ -35,7 +35,7 @@
     <div class="card-group row p-0">
       <div class="card p-0 col-6">
         <div class="card-header">
-          Day1 {{this.liveInfo.liveDay1}}
+          {{ 'Day1' | translate }} {{ (this.liveInfo.liveDay1) | translate }}
         </div>
         <div class="card-body p-1">
           <ul class="list-group list-group-flush">
@@ -45,7 +45,7 @@
               <div
                 [style]="'background-color: ' + unit.color1 + ';'"
                 class="p-1">
-                {{unit.unitName}}
+                {{ (unit.unitName) | translate }}
               </div>
               <ul class="list-group list-group-flush ps-2">
               @for (idol of unit.idols; track idol.idolId) {
@@ -53,7 +53,7 @@
                   @if (this.displayIdol(idol.idolId, 1)) {
                     <li
                       class="list-group-item border-0 p-1 text-dark">
-                      <div>{{idol.cv}} ({{idol.idolName}}役)</div>
+                      <div>{{ (idol.cv) | translate }} ({{ (idol.idolName) | translate }}{{ '役)' | translate }}</div>
                     </li>
                   }
                   @else {
@@ -72,7 +72,7 @@
       </div>
       <div class="card p-0 col-6">
         <div class="card-header">
-          Day2 {{this.liveInfo.liveDay2}}
+          {{ 'Day2' | translate }} {{ (this.liveInfo.liveDay2) | translate }}
         </div>
         <div class="card-body p-1">
           <ul class="list-group list-group-flush">
@@ -82,7 +82,7 @@
               <div
                 [style]="'background-color: ' + unit.color1 + ';'"
                 class="p-1">
-                {{unit.unitName}}
+                {{ (unit.unitName) | translate }}
               </div>
               <ul class="list-group list-group-flush ps-2">
               @for (idol of unit.idols; track idol.idolId) {
@@ -90,7 +90,7 @@
                   @if (this.displayIdol(idol.idolId, 2)) {
                     <li
                       class="list-group-item border-0 p-1 text-dark">
-                      <div>{{idol.cv}} ({{idol.idolName}}役)</div>
+                      <div>{{ (idol.cv) | translate }} ({{ (idol.idolName) | translate }}{{ '役)' | translate }}</div>
                     </li>
                   }
                   @else {
@@ -111,15 +111,15 @@
   </div>
   @if (this.liveInfo.day1SetList && this.liveInfo.day2SetList && this.liveInfo.day1SetList.length > 0 && this.liveInfo.day2SetList.length > 0) {
     <div class="col-12 justify-content-center">
-    <h3 class="h4 text-center">歌單</h3>
+    <h3 class="h4 text-center">{{ '歌單' | translate }}</h3>
     <div class="card">
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
-            <a href="javascript: void(0);" (click)="this.dayTab = 0" [ngClass]="{'disabled': this.dayTab == 0, 'active': this.dayTab == 0 }" class="nav-link" style="font-family: Meiryo" i18n>Day1</a>
+            <a href="javascript: void(0);" (click)="this.dayTab = 0" [ngClass]="{'disabled': this.dayTab == 0, 'active': this.dayTab == 0 }" class="nav-link" style="font-family: Meiryo" i18n>{{ 'Day1' | translate }}</a>
           </li>
           <li class="nav-item">
-            <a href="javascript: void(0);" (click)="this.dayTab = 1" [ngClass]="{'disabled': this.dayTab == 1, 'active': this.dayTab == 1 }" class="nav-link" style="font-family: Meiryo" i18n>Day2</a>
+            <a href="javascript: void(0);" (click)="this.dayTab = 1" [ngClass]="{'disabled': this.dayTab == 1, 'active': this.dayTab == 1 }" class="nav-link" style="font-family: Meiryo" i18n>{{ 'Day2' | translate }}</a>
           </li>
         </ul>
       </div>
@@ -128,17 +128,17 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Index</th>
-                <th>楽曲</th>
-                <th>出演</th>
+                <th>{{ 'Index' | translate }}</th>
+                <th>{{ '楽曲' | translate }}</th>
+                <th>{{ '出演' | translate }}</th>
               </tr>
             </thead>
             <tbody>
               @for(song of this.liveInfo.day1SetList; track song; let i = $index) {
               <tr>
-                <td>{{i + 1}}</td>
-                <td>{{song.songName}}</td>
-                <td>{{displaySinger(song)}}</td>
+                <td>{{ (i + 1) | translate }}</td>
+                <td>{{ (song.songName) | translate }}</td>
+                <td>{{ (displaySinger(song)) | translate }}</td>
               </tr>
               }
             </tbody>
@@ -148,17 +148,17 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Index</th>
-                <th>楽曲</th>
-                <th>出演</th>
+                <th>{{ 'Index' | translate }}</th>
+                <th>{{ '楽曲' | translate }}</th>
+                <th>{{ '出演' | translate }}</th>
               </tr>
             </thead>
             <tbody>
               @for(song of this.liveInfo.day2SetList; track song; let i = $index) {
               <tr>
-                <td>{{i + 1}}</td>
-                <td>{{song.songName}}</td>
-                <td>{{displaySinger(song)}}</td>
+                <td>{{ (i + 1) | translate }}</td>
+                <td>{{ (song.songName) | translate }}</td>
+                <td>{{ (displaySinger(song)) | translate }}</td>
               </tr>
               }
             </tbody>

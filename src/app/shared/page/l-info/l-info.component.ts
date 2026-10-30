@@ -1,6 +1,7 @@
+import { TranslationService } from 'src/app/service/translation/translation.service';
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { ShinyColorsApiService } from 'src/app/service/shinycolors-api/shinycolors-api.service';
 import { UtilitiesService } from 'src/app/service/utilities/utilities.service';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { liveSetList } from '../../interfaces/liveSetList';
 @Component({
   selector: 'app-l-info',
   imports: [
+    TranslationPipe,
     CommonModule,
     RouterModule,
   ],
@@ -36,8 +38,8 @@ export class LInfoComponent {
     private scUtilServive: UtilitiesService,
     private scApiService: ShinyColorsApiService,
     private route: ActivatedRoute,
-    private title: Title,
-    private meta: Meta
+    private title: TranslationService,
+    private meta: TranslationService
   ) {
     title.setTitle('Live 情報');
     scUtilServive.emitMobileTitle('Live 情報');

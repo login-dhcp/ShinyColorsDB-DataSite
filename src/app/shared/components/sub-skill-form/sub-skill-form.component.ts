@@ -1,8 +1,10 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, ElementRef, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { SupSkillList } from '../../interfaces/supSkillList';
 
 @Component({
+  imports: [TranslationPipe],
   selector: 'app-sub-skill-form',
   standalone: true,
   templateUrl: './sub-skill-form.component.html',

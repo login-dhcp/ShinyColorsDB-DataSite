@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ import { TabStatus } from '../../enums/tabStatus';
 @Component({
   selector: 'app-charlist',
   imports: [
+    TranslationPipe,
     RouterModule,
     CommonModule,
     NgbCollapse,

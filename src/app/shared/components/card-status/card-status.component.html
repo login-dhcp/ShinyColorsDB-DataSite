@@ -1,5 +1,5 @@
 <h3 class="col-12 pt-2">
-  ステータス
+  {{ 'ステータス' | translate }}
 </h3>
 <table class="table text-center">
   <thead>
@@ -13,15 +13,15 @@
   <tbody>
     <tr>
       <th class="color_vocal">Vo</th>
-      <td>{{this.cardStatus.vocal}}</td>
+      <td>{{ (this.cardStatus.vocal) | translate }}</td>
       <th class="color_dance">Da</th>
-      <td>{{this.cardStatus.dance}}</td>
+      <td>{{ (this.cardStatus.dance) | translate }}</td>
     </tr>
     <tr>
       <th class="color_visual">Vi</th>
-      <td>{{this.cardStatus.visual}}</td>
+      <td>{{ (this.cardStatus.visual) | translate }}</td>
       <th class="color_mental">Me</th>
-      <td>{{this.cardStatus.mental}}</td>
+      <td>{{ (this.cardStatus.mental) | translate }}</td>
     </tr>
   </tbody>
 </table>

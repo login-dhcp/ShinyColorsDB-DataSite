@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LiveInfo } from '../../interfaces/liveInfo';
@@ -6,6 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-live-info',
   imports: [
+    TranslationPipe,
     RouterModule,
     CommonModule
   ],

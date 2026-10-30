@@ -6,21 +6,21 @@
           href="javascript: void(0);"
           class="nav-link"
           (click)="changeDisplay(0);"
-          [ngClass]="{ disabled: this.overview, active: this.overview }" i18n>概覽</a>
+          [ngClass]="{ disabled: this.overview, active: this.overview }" i18n>{{ '概覽' | translate }}</a>
       </li>
       <li class="nav-item">
         <a
           href="javascript: void(0);"
           class="nav-link"
           (click)="changeDisplay(1);"
-          [ngClass]="{ disabled: this.limited, active: this.limited }" i18n>限定</a>
+          [ngClass]="{ disabled: this.limited, active: this.limited }" i18n>{{ '限定' | translate }}</a>
       </li>
       <li class="nav-item">
         <a
           href="javascript: void(0);"
           class="nav-link"
           (click)="changeDisplay(2);"
-          [ngClass]="{ disabled: this.general, active: this.general }" i18n>常駐</a>
+          [ngClass]="{ disabled: this.general, active: this.general }" i18n>{{ '常駐' | translate }}</a>
       </li>
     </ul>
   </div>
@@ -30,17 +30,17 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Produce</th>
-            <th>實裝日</th>
-            <th>距今(天)</th>
+            <th>{{ 'Produce' | translate }}</th>
+            <th>{{ '實裝日' | translate }}</th>
+            <th>{{ '距今(天)' | translate }}</th>
           </tr>
         </thead>
         <tbody>
           @for (item of this.placeholder; track item) {
           <tr>
-            <td>Loading... Loading... Loading...</td>
-            <td>Loading...</td>
-            <td>Loading...</td>
+            <td>{{ 'Loading... Loading... Loading...' | translate }}</td>
+            <td>{{ 'Loading...' | translate }}</td>
+            <td>{{ 'Loading...' | translate }}</td>
           </tr>
           }
         </tbody>
@@ -50,17 +50,17 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Support</th>
-            <th>實裝日</th>
-            <th>距今(天)</th>
+            <th>{{ 'Support' | translate }}</th>
+            <th>{{ '實裝日' | translate }}</th>
+            <th>{{ '距今(天)' | translate }}</th>
           </tr>
         </thead>
         <tbody>
           @for (item of this.placeholder; track item) {
           <tr>
-            <td>Loading... Loading... Loading...</td>
-            <td>Loading...</td>
-            <td>Loading...</td>
+            <td>{{ 'Loading... Loading... Loading...' | translate }}</td>
+            <td>{{ 'Loading...' | translate }}</td>
+            <td>{{ 'Loading...' | translate }}</td>
           </tr>
           }
         </tbody>

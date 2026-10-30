@@ -1,3 +1,4 @@
+import { TranslationPipe } from 'src/app/service/translation/translation.pipe';
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DatePipe, CommonModule } from '@angular/common';
@@ -10,6 +11,7 @@ import { ShinyColorsUrlService } from 'src/app/service/shinycolors-url/shinycolo
 @Component({
   selector: 'app-card-item',
   imports: [
+    TranslationPipe,
     RouterModule,
     CommonModule,
     DatePipe
