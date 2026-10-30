@@ -264,6 +264,8 @@
     "Source code": "소스 코드",
     "X profile": "X 프로필",
     "Email": "이메일",
-    "Discord": "디스코드"
+    "Discord": "디스코드",
+    "Loading Cardle...": "카드 맞히기를 불러오는 중...",
+    "Unable to load Cardle. Please reload the page.": "카드 맞히기를 불러오지 못했습니다. 페이지를 새로고침해 주세요."
   }
 }

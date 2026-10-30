@@ -264,6 +264,8 @@
     "Source code": "ソースコード",
     "X profile": "Xプロフィール",
     "Email": "メール",
-    "Discord": "Discord"
+    "Discord": "Discord",
+    "Loading Cardle...": "Cardleを読み込み中...",
+    "Unable to load Cardle. Please reload the page.": "Cardleを読み込めませんでした。ページを再読み込みしてください。"
   }
 }

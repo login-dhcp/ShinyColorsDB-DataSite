@@ -151,8 +151,7 @@ export class ShinyColorsApiService {
 
   getCardleInfo(): Observable<Cardle> {
     return this.http
-      .get<Cardle>(`https://${environment.apiUrl}/cardle/getCardle`)
-      .pipe(catchError(this.handleError<Cardle>(`getCardleInfo`)));
+      .get<Cardle>(`https://${environment.apiUrl}/cardle/getCardle`);
   }
 
   getAlbumInfos(): Observable<CD[]> {

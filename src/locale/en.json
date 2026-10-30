@@ -264,6 +264,8 @@
     "Source code": "Source Code",
     "X profile": "X Profile",
     "Email": "Email",
-    "Discord": "Discord"
+    "Discord": "Discord",
+    "Loading Cardle...": "Loading Cardle...",
+    "Unable to load Cardle. Please reload the page.": "Unable to load Cardle. Please reload the page."
   }
 }

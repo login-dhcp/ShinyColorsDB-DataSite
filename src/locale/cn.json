@@ -264,6 +264,8 @@
     "Source code": "源代码",
     "X profile": "X个人资料",
     "Email": "电子邮件",
-    "Discord": "Discord"
+    "Discord": "Discord",
+    "Loading Cardle...": "正在加载猜卡游戏...",
+    "Unable to load Cardle. Please reload the page.": "无法加载猜卡游戏，请刷新页面。"
   }
 }
